@@ -13,10 +13,10 @@
 
 void swap(int *array, size_t size, int *a, int *b)
 {
-	if (*a != b)
+	if (*a != *b)
 	{
 		/*doing arithmetic based operation */
-		*a = *a + b;
+		*a = *a + *b;
 		*b = *a - *b;
 		*a = *a - *b;
 		print_array((const int *)array, size);
