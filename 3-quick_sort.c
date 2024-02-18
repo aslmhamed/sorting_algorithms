@@ -42,7 +42,7 @@ size_t lomuto(int *array, size_t size, ssize_t low, ssize_t high)
 
 	for (i = j = low; j < high; j++)
 	{
-		if (array [j] < piv)
+		if (array[j] < piv)
 		{
 			swap(array, size, &array[j], &array[i++]);
 		}
@@ -68,6 +68,7 @@ void q_sort(int *array, size_t size, ssize_t low, ssize_t high)
 	if (low < high)
 	{
 		size_t p = lomuto(array, size, low, high);
+
 		q_sort(array, size, low, p - 1);
 		q_sort(array, size, p + 1, high);
 	}
