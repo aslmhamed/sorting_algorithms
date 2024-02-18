@@ -1,83 +1,87 @@
 #include "sort.h"
 
 /**
- * swap - swaps two integer values
+ * swap - swaps two int values
  *
- * @array: array of ints to sort
+ * @array: array of integers to sort
  * @size: size of the array
- * @a: address for the first value
- * @b:address for the second value
+ * @a: first address
+ * @b: second address
  *
  * Return: void
+ *
 */
 
-void swap(int *array, size_t size, int *a, int *b)
+void swap(int *array, int *a, int *b, size_t size)
 {
-	if (*a != b)
+	if (*a != *b)
 	{
-		/*doing arithmetic based operation */
-		*a = *a + b;
+		*a = *a + *b;
 		*b = *a - *b;
 		*a = *a - *b;
 		print_array((const int *)array, size);
 	}
+
 }
 
+
 /**
- * lomuto_partition - partitions the array
+ * lomuto - partitioning the array
  *
- * @array: array of ints to sort
+ * @array: array of Integers to sort
  * @size: size of the array
- * @low: the lowest index of the sort range
- * @high: the highest index of the sort range
+ * @low: lowst index of the sort range
+ * @high: highest index of the sort range
  *
  * Return: size_t
 */
 
-size_t lomuto_partition(int *array, size_t size, ssize_t low, ssize_t high)
+size_t lomuto(int *array, size_t size, ssize_t low, ssize_t high)
 {
-	int x, y, pivot = array[high];
+	int i, j, piv = array[high];
 
-	for (x = y = low; y < high; y++)
+	for (i = j = low; j < high; j++)
 	{
-		if (array[y] < pivot)
+		if (array [j] < piv)
 		{
-			swap(array, size, &array[y], &array[x++]);
+			swap(array, size, &array[j], &array[i++]);
 		}
 	}
-	swap(array, size, &array[x], &array[high]);
+	swap(array, size, &array[i], &array[high]);
 
-	return (x);
+	return (i);
 }
 
 /**
- * quicksort - quicksorts via lomuto paritioning scheme
+ * q_sort - quicksort using lomuto paritioning scheme
  *
- * @array: array of ints to sort
- * @size: the size of the array
- * @low: the lowest index of the sort range
- * @high: the highest index of the sort range
+ * @array: array of integers to sort
+ * @size: size of the array
+ * @low: lowest index of the sort range
+ * @high: highest index of the sort range
  *
  * Return: void
 */
 
-void quicksort(int *array, size_t size, ssize_t low, ssize_t high)
+void q_sort(int *array, size_t size, ssize_t low, ssize_t high)
 {
 	if (low < high)
 	{
-		size_t p = lomuto_partition(array, size, low, high);
-
-		quicksort(array, size, low, p - 1);
-		quicksort(array, size, p + 1, high);
+		size_t p = lomuto(array, size, low, high);
+		q_sort(array, size, low, p - 1);
+		q_sort(array, size, p + 1, high);
 	}
+
 }
 
 /**
- * quick_sort -  function that sorts an array of integers in
- *ascending order using the Quick sort algorithm
+ * quick_sort - function that sorts an array of integers
+ *in ascending order using the Quick sort algorithm
  *
- * @array: array to sort
+ * @array: array of integers to sort
  * @size: size of the array
+ *
+ * Return: void
 */
 
 void quick_sort(int *array, size_t size)
@@ -86,5 +90,7 @@ void quick_sort(int *array, size_t size)
 	{
 		return;
 	}
-	quicksort(array, size, 0, size - 1);
+	q_sort(array, size, 0, size - 1);
 }
+
+
