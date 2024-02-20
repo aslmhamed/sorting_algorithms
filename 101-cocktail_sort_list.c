@@ -11,7 +11,7 @@
  *
 */
 
-void swap(listint_t *curr, listint_t *old_curr, linstint_t **list)
+void swap(listint_t *curr, listint_t *old_curr, listint_t **list)
 {
 	listint_t *tail = curr->next;
 	listint_t *head = old_curr->prev;
