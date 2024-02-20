@@ -78,14 +78,14 @@ void merge(int *array, int size, int first, int mid, int *cpy)
 }
 
 /**
- * mergeSort - array separator
+ * m_sort - array separator
  * @cpy: copy of array
  * @first: initial position
  * @size: size of the original  array
  * @array: the original array
 */
 
-void mergeSort(int *cpy, int first, int size, int *array)
+void m_sort(int *cpy, int first, int size, int *array)
 {
 	int mid;
 
@@ -94,8 +94,8 @@ void mergeSort(int *cpy, int first, int size, int *array)
 
 	mid = (size + first) / 2;
 
-	mergeSort(array, first, mid, cpy);
-	mergeSort(array, mid, size, cpy);
+	m_sort(array, first, mid, cpy);
+	m_sort(array, mid, size, cpy);
 
 	merge(cpy, size, first, mid, array);
 }
@@ -114,7 +114,8 @@ void copy_array(int *arr, int *cpy, int size)
 }
 
 /**
- * merge_sort - create partition and copy
+ * merge_sort - function that sorts an array of integers in
+ *ascending order using the Merge sort algorithm
  * @array: array
  * @size : array size
 */
@@ -130,6 +131,6 @@ void merge_sort(int *array, size_t size)
 
 	copy_array(array, cpy, size);
 
-	mergeSort(cpy, 0, size, array);
+	m_sort(cpy, 0, size, array);
 	free(cpy);
 }
